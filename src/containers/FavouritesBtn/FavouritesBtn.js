@@ -16,7 +16,7 @@ let styles = {
 }
 
 const FavouritesBtn = props => {
-	const { id, favouritesId, changeFav } = props
+	const { id, favouritesId, addToFavourites, deleteFromFavourites } = props
 
 	const checkOnFav = () => {
 		return favouritesId.some(fav => fav === id)
@@ -24,8 +24,16 @@ const FavouritesBtn = props => {
 
 	let isFav = checkOnFav()
 
+	const changeFavourites = id => {
+		if (favouritesId.indexOf(id) === -1) {
+			return addToFavourites(id)
+		}
+
+		return deleteFromFavourites(id)
+	}
+
 	return (
-		<IconButton onClick={() => changeFav(id)}>
+		<IconButton onClick={() => changeFavourites(id)}>
 			<FavoriteIcon style={isFav ? styles.favoriteActive : styles.favorite} />
 		</IconButton>
 	)
@@ -39,7 +47,9 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		changeFav: id => dispatch(ActionCreator.changeFavourites(id)),
+		addToFavourites: id => dispatch(ActionCreator.addToFavourites(id)),
+		deleteFromFavourites: id =>
+			dispatch(ActionCreator.deleteFromFavourites(id)),
 	}
 }
 

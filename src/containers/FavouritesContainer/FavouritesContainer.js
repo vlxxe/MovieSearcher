@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import {
-	ActionCreator,
-	Operation,
-} from '../../store/Favourites/FavouritesActions'
+import { Operation } from '../../store/Favourites/FavouritesActions'
 import MovieList from '../../components/MovieList/MovieList'
-
-const styles = {
-	button: {
-		margin: 25,
-	},
-}
 
 class FavouritesContainer extends Component {
 	componentDidMount() {
@@ -29,30 +19,17 @@ class FavouritesContainer extends Component {
 	}
 
 	render() {
-		const { deleteAllFavourites, favouritesMoviesList } = this.props
+		const { favouritesId, favouritesMoviesList } = this.props
 
-		if (favouritesMoviesList) {
+		if (!favouritesId.length) {
 			return (
-				<React.Fragment>
-					<Button
-						style={styles.button}
-						variant="contained"
-						color="secondary"
-						onClick={() => deleteAllFavourites()}
-					>
-						Delete all favourites movies
-					</Button>
-
-					<MovieList items={favouritesMoviesList} />
-				</React.Fragment>
+				<Typography variant="h4" align="center">
+					There is no one your favourites movies!
+				</Typography>
 			)
 		}
 
-		return (
-			<Typography variant="h4" align="center">
-				There is no one your favourites movies!
-			</Typography>
-		)
+		return <MovieList items={favouritesMoviesList} />
 	}
 }
 
@@ -65,7 +42,6 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		deleteAllFavourites: () => dispatch(ActionCreator.deleteAllFavourites()),
 		fetchFavouritesMovies: arr =>
 			dispatch(Operation.fetchFavouritesMovies(arr)),
 	}

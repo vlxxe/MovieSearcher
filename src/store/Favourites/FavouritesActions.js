@@ -1,17 +1,17 @@
 export const ActionType = {
-	CHANGE_FAVOURITES: 'CHANGE_FAVOURITES',
-	DELETE_ALL_FAVOURITES: 'DELETE_ALL_FAVOURITES',
+	ADD_TO_FAVOURITES: 'ADD_TO_FAVOURITES',
+	DELETE_FROM_FAVOURITES: 'DELETE_FROM_FAVOURITES',
 	FETCH_FAVOURITES_MOVIES_LOADED: 'FETCH_FAVOURITES_MOVIES_LOADED',
 }
 
 export const ActionCreator = {
-	changeFavourites: id => ({
-		type: ActionType.CHANGE_FAVOURITES,
+	addToFavourites: id => ({
+		type: ActionType.ADD_TO_FAVOURITES,
 		payload: id,
 	}),
-
-	deleteAllFavourites: () => ({
-		type: ActionType.DELETE_ALL_FAVOURITES,
+	deleteFromFavourites: id => ({
+		type: ActionType.DELETE_FROM_FAVOURITES,
+		payload: id,
 	}),
 	fetchFavouritesMoviesLoaded: data => ({
 		type: ActionType.FETCH_FAVOURITES_MOVIES_LOADED,
