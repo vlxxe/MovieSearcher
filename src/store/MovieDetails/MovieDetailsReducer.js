@@ -4,6 +4,7 @@ const initialState = {
 	loading: true,
 	movieData: null,
 	recommendList: null,
+	creditsList: null,
 	error: null,
 }
 
@@ -29,6 +30,12 @@ export function movieDetailsReducer(state = initialState, action) {
 			return {
 				...state,
 				recommendList: action.payload,
+			}
+
+		case ActionType.FETCH_CREDITS_LIST_LOADED:
+			return {
+				...state,
+				creditsList: action.payload,
 			}
 
 		case ActionType.FETCH_ERROR:

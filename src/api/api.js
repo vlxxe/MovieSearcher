@@ -82,7 +82,7 @@ export class apiService {
 	}
 
 	getFavouritesMovies = async arr => {
-		let list = await []
+		let list = []
 		for (let i in arr) {
 			list.push(
 				this.api
@@ -95,5 +95,19 @@ export class apiService {
 			)
 		}
 		return Promise.all(list)
+	}
+
+	getCreditsList = async id => {
+		const response = await this.api.get(`/movie/${id}/credits`, {
+			params: {
+				...this.config.params,
+			},
+		})
+
+		if (!response.statusText === 'OK') {
+			throw new Error(`Could not fetch received ${response.statusText}`)
+		}
+
+		return response.data.cast
 	}
 }

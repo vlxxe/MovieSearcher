@@ -8,12 +8,12 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 
 const styles = {
-	root: {
-		flexGrow: 1,
-	},
 	title: {
 		marginTop: 20,
 		marginBottom: 20,
+	},
+	root: {
+		flexGrow: 1,
 	},
 	divider: {
 		marginTop: 5,
@@ -21,7 +21,7 @@ const styles = {
 	},
 }
 
-const MovieDetails = ({ movieData, recommendList }) => {
+const MovieDetails = ({ movieData, children }) => {
 	const {
 		id,
 		title,
@@ -59,8 +59,8 @@ const MovieDetails = ({ movieData, recommendList }) => {
 					<Divider style={styles.divider} />
 					<Typography variant="body1">Release: {release_date}</Typography>
 				</Grid>
-				{recommendList}
 			</Grid>
+			{children}
 		</Container>
 	)
 }

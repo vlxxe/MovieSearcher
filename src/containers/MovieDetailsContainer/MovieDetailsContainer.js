@@ -5,6 +5,8 @@ import Spinner from '../../components/Spinner/Spinner'
 import Typography from '@material-ui/core/Typography'
 import MovieDetails from '../../components/MovieDetails/MovieDetails'
 import RecommendListContainer from './RecommendListContainer/RecommendListContainer'
+import CreditsListContainer from './CreditsListContainer/CreditsListContainer'
+
 import { Operation } from '../../store/MovieDetails/MovieDetailsActions'
 
 class MovieDetailsContainer extends Component {
@@ -40,10 +42,10 @@ class MovieDetailsContainer extends Component {
 		}
 
 		return (
-			<MovieDetails
-				movieData={movieData}
-				recommendList={<RecommendListContainer id={movieData.id} />}
-			/>
+			<MovieDetails movieData={movieData}>
+				<CreditsListContainer id={movieData.id} />
+				<RecommendListContainer id={movieData.id} />
+			</MovieDetails>
 		)
 	}
 }
