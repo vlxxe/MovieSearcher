@@ -14,7 +14,6 @@ const SearchBar = ({ getQuery }) => {
 	return (
 		<Container maxWidth="xs" style={{ padding: '20px 0' }}>
 			<Input
-				autoFocus
 				fullWidth
 				placeholder="Enter movie for search"
 				onChange={e => onSearch(e.target.value)}

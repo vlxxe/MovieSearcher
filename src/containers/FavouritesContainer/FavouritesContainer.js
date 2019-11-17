@@ -8,7 +8,9 @@ import MovieList from '../../components/MovieList/MovieList'
 class FavouritesContainer extends Component {
 	componentDidMount() {
 		const { favouritesId, fetchFavouritesMovies } = this.props
-		fetchFavouritesMovies(favouritesId)
+		if (favouritesId.length) {
+			fetchFavouritesMovies(favouritesId)
+		}
 	}
 
 	componentDidUpdate(prevProps) {

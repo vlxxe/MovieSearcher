@@ -11,7 +11,6 @@ class TrendListContainer extends Component {
 	urlParams = new URLSearchParams(this.props.location.search)
 	componentDidMount() {
 		const { fetchTrendList } = this.props
-		console.log(this.props.location)
 		if (this.urlParams.get('page') !== null) {
 			fetchTrendList(this.urlParams.get('page'))
 		} else {

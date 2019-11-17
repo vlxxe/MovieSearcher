@@ -6,7 +6,10 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 const useStyles = makeStyles({
-	root: {
+	appBar: {
+		marginBottom: 20,
+	},
+	toolbar: {
 		justifyContent: 'space-between',
 	},
 	link: {
@@ -22,8 +25,8 @@ const useStyles = makeStyles({
 const Header = () => {
 	const classes = useStyles()
 	return (
-		<AppBar position="static">
-			<Toolbar className={classes.root}>
+		<AppBar position="static" className={classes.appBar}>
+			<Toolbar className={classes.toolbar}>
 				<Link to="/" className={classes.link}>
 					MovieSearcher
 				</Link>
