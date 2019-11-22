@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import RecommendList from '../../../components/MovieDetails/RecommendList/RecommendList'
+import MovieList from '../../../components/MovieList/MovieList'
 import { Operation } from '../../../store/MovieDetails/MovieDetailsActions'
 
 class RecommendListContainer extends Component {
@@ -15,8 +15,7 @@ class RecommendListContainer extends Component {
 		if (recommendList === null || recommendList.length === 0) {
 			return null
 		}
-
-		return <RecommendList list={recommendList} />
+		return <MovieList items={recommendList} />
 	}
 }
 

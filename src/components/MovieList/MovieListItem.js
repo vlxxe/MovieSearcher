@@ -7,13 +7,13 @@ import FavouritesBtn from '../../containers/FavouritesBtn/FavouritesBtn'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 
-const basePosterPath = 'https://image.tmdb.org/t/p/w300/'
+const basePosterPath = 'https://image.tmdb.org/t/p/w200'
 const useStyles = makeStyles({
-	gridItem: {
-		width: 300,
-		height: 450,
-		marginRight: 10,
-		marginBottom: 10,
+	movieItem: {
+		width: 200,
+		height: 300,
+		margin: 5,
+		marginRight: 0,
 	},
 	img: {
 		objectFit: 'cover',
@@ -28,14 +28,14 @@ const useStyles = makeStyles({
 
 const MovieListItem = props => {
 	const classes = useStyles()
-	const { poster_path, id, title } = props.item
+	const { poster_path, id, title } = props.itemData
 
 	const posterPath = poster_path
 		? `${basePosterPath}${poster_path}`
 		: `/img/not-found.png`
 
 	return (
-		<GridListTile className={classes.gridItem} key={id}>
+		<GridListTile className={classes.movieItem} key={id}>
 			<Link to={`/\movie?id=${id}`}>
 				<img className={classes.img} src={posterPath} alt={title} />
 			</Link>
@@ -48,7 +48,7 @@ const MovieListItem = props => {
 }
 
 MovieListItem.propTypes = {
-	item: PropTypes.object.isRequired,
+	itemData: PropTypes.object.isRequired,
 }
 
 export default MovieListItem

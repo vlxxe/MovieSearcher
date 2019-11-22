@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Typography from '@material-ui/core/Typography'
 import GridList from '@material-ui/core/GridList'
-
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 
 const styles = {
+	credits: {},
 	title: {
 		marginTop: 10,
 		marginBottom: 5,
@@ -23,14 +24,14 @@ const styles = {
 		width: 150,
 		height: 'auto',
 		padding: 0,
-		marginRight: 2,
-		marginBottom: 2,
+		marginBottom: 15,
+		marginLeft: 10,
 	},
 }
 
 const CreditsList = props => {
-	const baseRecommendProfilePath = 'https://image.tmdb.org/t/p/w185/'
-	const persons = props.list
+	const baseRecommendProfilePath = 'https://image.tmdb.org/t/p/w185'
+	const persons = props.creditsData
 		.map(person => {
 			let profilePath = person.profile_path
 				? `${baseRecommendProfilePath}${person.profile_path}`
@@ -54,16 +55,20 @@ const CreditsList = props => {
 				</Card>
 			)
 		})
-		.slice(0, 8)
+		.slice(0, 10)
 
 	return (
-		<React.Fragment>
+		<section style={styles.credits}>
 			<Typography variant="h5" style={styles.title}>
 				Actors
 			</Typography>
 			<GridList style={styles.ul}>{persons}</GridList>
-		</React.Fragment>
+		</section>
 	)
+}
+
+CreditsList.propTypes = {
+	creditsData: PropTypes.array,
 }
 
 export default CreditsList

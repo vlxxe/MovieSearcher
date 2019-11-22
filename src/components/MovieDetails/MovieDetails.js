@@ -2,26 +2,45 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import FavouritesBtn from '../../containers/FavouritesBtn/FavouritesBtn'
-import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 
-const styles = {
-	title: {
-		marginTop: 20,
-		marginBottom: 20,
-	},
-	root: {
-		flexGrow: 1,
-	},
-	divider: {
-		marginTop: 5,
-		marginBottom: 5,
-	},
-}
-
 const MovieDetails = ({ movieData, children }) => {
+	const styles = {
+		movieDetails: {
+			color: 'white',
+			backgroundColor: 'rgba(0,0,0,.8)',
+		},
+		backDrop: {
+			backgroundSize: 'cover',
+			zIndex: -1,
+			width: '100%',
+			height: '100%',
+			display: 'block',
+			position: 'fixed',
+			top: 0,
+			right: 0,
+			left: 0,
+		},
+		contentContainer: {
+			flexGrow: 1,
+			fontSize: 0,
+		},
+		title: {
+			marginBottom: 20,
+		},
+		descWrapper: {
+			padding: 20,
+		},
+		divider: {
+			marginTop: 5,
+			marginBottom: 5,
+		},
+		imgWrapper: {
+			flexGrow: 0,
+		},
+	}
 	const {
 		id,
 		title,
@@ -31,24 +50,29 @@ const MovieDetails = ({ movieData, children }) => {
 		vote_average,
 		budget,
 		revenue,
+		backdrop_path,
 	} = movieData
 
-	const urlBasePoster = 'https://image.tmdb.org/t/p/w300/'
+	const urlBasePoster = 'https://image.tmdb.org/t/p/w300'
 	const posterPath = poster_path
 		? `${urlBasePoster}${poster_path}`
 		: `/img/not-found.png`
+	if (backdrop_path) {
+		styles.backDrop.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${backdrop_path})`
+	}
 
 	return (
-		<Container maxWidth="lg" display="flex">
-			<Typography variant="h2" style={styles.title}>
-				{title}
-				<FavouritesBtn id={id} />
-			</Typography>
-			<Grid container style={styles.root}>
-				<Grid item xs>
+		<div style={styles.movieDetails}>
+			<div style={styles.backDrop} />
+			<Grid container style={styles.contentContainer}>
+				<Grid item xs style={styles.imgWrapper}>
 					<img src={posterPath} alt={title} />
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item md={7} style={styles.descWrapper}>
+					<Typography variant="h2" style={styles.title}>
+						{title}
+						<FavouritesBtn id={id} />
+					</Typography>
 					<Typography variant="body1">{overview}</Typography>
 					<Divider style={styles.divider} />
 					<Typography variant="body1">Rating: {vote_average}</Typography>
@@ -61,13 +85,12 @@ const MovieDetails = ({ movieData, children }) => {
 				</Grid>
 			</Grid>
 			{children}
-		</Container>
+		</div>
 	)
 }
 
 MovieDetails.propTypes = {
 	movieData: PropTypes.object,
-	children: PropTypes.element,
 }
 
 export default MovieDetails

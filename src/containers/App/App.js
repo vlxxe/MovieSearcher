@@ -9,6 +9,7 @@ import MovieDetailsContainer from '../MovieDetailsContainer/MovieDetailsContaine
 import { ThemeProvider } from '@material-ui/styles'
 import theme from '../../style/theme'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
 import SearchListContainer from '../SearchListContainer/SearchListContainer'
 import SearchBarContainer from '../SearchBarContainer/SearchBarContainer'
 import TrendListContainer from '../TrendListContainer/TrendListContainer'
@@ -19,34 +20,45 @@ const App = () => {
 			<ThemeProvider theme={theme}>
 				<CssBaseline>
 					<Header />
+					<Container maxWidth="md">
+						<Switch>
+							<Route
+								exact
+								path="/"
+								render={({ location, history }) => (
+									<Fragment>
+										<Container maxWidth="md">
+											<SearchBarContainer />
+											<TrendListContainer
+												location={location}
+												history={history}
+											/>
+										</Container>
+									</Fragment>
+								)}
+							/>
 
-					<Switch>
-						<Route
-							exact
-							path="/"
-							render={({ location, history }) => (
-								<Fragment>
-									<SearchBarContainer />
-									<TrendListContainer location={location} history={history} />
-								</Fragment>
-							)}
-						/>
+							<Route
+								exact
+								path="/search/movie"
+								render={({ location, history }) => (
+									<Fragment>
+										<Container maxWidth="md">
+											<SearchBarContainer />
+											<SearchListContainer
+												location={location}
+												history={history}
+											/>
+										</Container>
+									</Fragment>
+								)}
+							/>
 
-						<Route
-							exact
-							path="/search/movie"
-							render={({ location, history }) => (
-								<Fragment>
-									<SearchBarContainer />
-									<SearchListContainer location={location} history={history} />
-								</Fragment>
-							)}
-						/>
+							<Route path="/movie" component={MovieDetailsContainer} />
 
-						<Route path="/movie" component={MovieDetailsContainer} />
-
-						<Route exact path="/favourites" component={FavouritesContainer} />
-					</Switch>
+							<Route exact path="/favourites" component={FavouritesContainer} />
+						</Switch>
+					</Container>
 				</CssBaseline>
 			</ThemeProvider>
 		</Fragment>

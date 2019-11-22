@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import Spinner from '../../components/Spinner/Spinner'
 import Typography from '@material-ui/core/Typography'
 import MovieDetails from '../../components/MovieDetails/MovieDetails'
-import RecommendListContainer from './RecommendListContainer/RecommendListContainer'
-import CreditsListContainer from './CreditsListContainer/CreditsListContainer'
+import RecommendListContainer from './RecommendList/RecommendListContainer'
+import CreditsListContainer from './CreditsList/CreditsListContainer'
 
 import { Operation } from '../../store/MovieDetails/MovieDetailsActions'
 
@@ -44,6 +44,9 @@ class MovieDetailsContainer extends Component {
 		return (
 			<MovieDetails movieData={movieData}>
 				<CreditsListContainer id={movieData.id} />
+				<Typography style={{ marginLeft: 10 }} variant="h5">
+					Recomemended movies
+				</Typography>
 				<RecommendListContainer id={movieData.id} />
 			</MovieDetails>
 		)

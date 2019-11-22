@@ -5,10 +5,10 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import GridList from '@material-ui/core/GridList'
 import Button from '@material-ui/core/Button'
-import MovieListItem from '../MovieListItem/MovieListItem'
+import MovieListItem from './MovieListItem'
 
 const styles = {
-	root: {
+	movieList: {
 		margin: 0,
 		display: 'flex',
 		flexWrap: 'wrap',
@@ -32,9 +32,9 @@ const MovieList = props => {
 
 	return (
 		<div>
-			<GridList style={styles.root}>
+			<GridList style={styles.movieList}>
 				{items.map((item, index) => {
-					return <MovieListItem key={index} item={item} />
+					return <MovieListItem key={`${index}${item.id}`} itemData={item} />
 				})}
 			</GridList>
 

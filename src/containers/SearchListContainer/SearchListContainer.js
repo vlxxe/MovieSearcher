@@ -68,7 +68,6 @@ class SearchListContainer extends Component {
 			totalPages,
 			currentPage,
 		} = this.props.searchList
-
 		if (loading) {
 			return <Spinner />
 		}
@@ -100,7 +99,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SearchListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchListContainer)

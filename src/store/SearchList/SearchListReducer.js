@@ -1,6 +1,7 @@
 import { ActionType } from './SearchListActions'
 
 const initialState = {
+	loading: true,
 	searchQueryList: null,
 	currentPage: null,
 	totalPages: null,
@@ -12,6 +13,7 @@ export function searchListReducer(state = initialState, action) {
 			return {
 				...state,
 				searchQueryList: null,
+				loading: true,
 			}
 
 		case ActionType.FETCH_SEARCH_QUERY_LOADED:
@@ -20,6 +22,7 @@ export function searchListReducer(state = initialState, action) {
 				searchQueryList: action.payload.list,
 				currentPage: action.payload.currentPage,
 				totalPages: action.payload.totalPages,
+				loading: false,
 			}
 
 		default:
